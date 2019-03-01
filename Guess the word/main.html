@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Javascript for kids</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="Light Theme/light_theme.css">
+        <link rel="stylesheet" href="animations.css">
+        <script src="word-guess.js"></script>
+        <script type="text/javascript">
+            var linkTag = document.getElementsByTagName("link");
+
+            function setTheme() {
+                if(linkTag[1].href.indexOf("Light") >= 0) {
+                    linkTag[1].href = "Dark Theme/dark_theme.css"; 
+
+                } else {
+                    linkTag[1].href = "Light Theme/light_theme.css"; 
+                }
+            }
+            window.onload = function () {
+                setTimeout(hideElement,10000);
+            }
+            function hideElement() {
+                document.querySelector("p:last-child").style.visibility = "hidden";
+            }
+        </script>
+    </head>
+    <body>
+        <div class="bg-image"></div>
+        <div class="main-content" id="main-content">
+            <button type="button" id="theme-modifier" onclick="setTheme()"></button>
+            <p id="fixed-label">Enter your secret word</p>
+            <input type="text" id="secret-input" placeholder="Player 1: Type something..." onkeydown="guessWord(this)">
+            <button type="button" id="proceed" onclick="pullData()">Proceed</button>
+            <p>Click the circle above to enjoy another theme :D</p>
+        </div>
+    </body>
+</html>
