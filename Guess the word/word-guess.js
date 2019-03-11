@@ -12,9 +12,9 @@ var strikes = 0;
 
 function pullData() {
   strikes = 0;
-  if(document.getElementById("secret-input").value.length > 0 
+  if(document.getElementById("secret-input").value.length > 0
       && document.getElementById("proceed").innerHTML === "Proceed") {
-    word = document.getElementById("secret-input").value;      
+    word = document.getElementById("secret-input").value;
     reformLabel();
   }
 }
@@ -41,9 +41,10 @@ String.prototype.replaceAt=function(index, char) {
 // Start a loop that continues as long as the person has
 // not guessed wrong three times, or all of the letters have
 // been guessed.
-function guessWord(keyPress) {
+function guessWord(e) {
   var txt = document.getElementById("fixed-label").innerHTML;
-  if(event.key === 'Enter' && document.getElementById("proceed").innerHTML === "Guess and press enter") {
+  var code = e.keyCode ? e.keyCode : e.which;      //for firefox compatibility
+  if(code == 13 && document.getElementById("proceed").innerHTML === "Guess and press enter") {
     // Start a loop that continues as long as the person has
     // not guessed wrong three times, or all of the letters have
     // been guessed.
@@ -73,8 +74,8 @@ function guessWord(keyPress) {
             label.innerHTML= label.innerHTML.replaceAt(i*2, letter);
           }
         }
-      }        
-      document.getElementById("secret-input").value = "";      
+      }
+      document.getElementById("secret-input").value = "";
       if(document.getElementById("fixed-label").innerHTML.indexOf("_") < 0) {
         getResult();
       }
@@ -115,11 +116,11 @@ function TriggerError(ErrorMessage) {
     btn.innerHTML = "Try Again";
     setTimeout(revertMainContainerStyle, 3000);
   } else {
-      mainLabel.innerHTML = "Secret word was \"" + word + "\"";
+      mainLabel.innerHTML = "Secret word was " + word;
       inputElement.placeholder = ErrorMessage;
       btn.innerHTML = "Game over, Try again";
       setTimeout(revertMainContainerStyle, 6000);
-  } 
+  }
   mainBlock.style.animation = "shake 0.57s cubic-bezier(.36,.07,.19,.97) both";
   mainBlock.style.backfaceVisibility = "hiiden";
   mainBlock.style.perspective = "1000px";
@@ -140,7 +141,7 @@ function revertMainContainerStyle() {
     inputElement.placeholder = "Player 2: Guess a letter";
     btn.innerHTML = "Guess and press enter";
   } else {
-    resetUI();      
+    resetUI();
   }
   mainBlock.style.boxShadow = "none";
   mainBlock.style.transitionDuration = "0.3s"

@@ -12,10 +12,10 @@
 
             function setTheme() {
                 if(linkTag[1].href.indexOf("Light") >= 0) {
-                    linkTag[1].href = "Dark Theme/dark_theme.css"; 
+                    linkTag[1].href = "Dark Theme/dark_theme.css";
 
                 } else {
-                    linkTag[1].href = "Light Theme/light_theme.css"; 
+                    linkTag[1].href = "Light Theme/light_theme.css";
                 }
             }
             window.onload = function () {
@@ -31,7 +31,7 @@
         <div class="main-content" id="main-content">
             <button type="button" id="theme-modifier" onclick="setTheme()"></button>
             <p id="fixed-label">Enter your secret word</p>
-            <input type="text" id="secret-input" placeholder="Player 1: Type something..." onkeydown="guessWord(this)">
+            <input type="text" id="secret-input" placeholder="Player 1: Type something..." onkeyup="guessWord(event)">
             <button type="button" id="proceed" onclick="pullData()">Proceed</button>
             <p>Click the circle above to enjoy another theme :D</p>
         </div>
